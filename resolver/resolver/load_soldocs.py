@@ -27,3 +27,39 @@ for root, dirnames, filenames in os.walk(docs_path):
         path_to_rst = os.path.join(root, filename)
         url2fs[live_url] = path_to_rst
 
+
+from qdrant_client import QdrantClient
+import json
+from tqdm import tqdm
+
+
+qdrant_client = QdrantClient("http://localhost:6333")
+qdrant_client.set_model("sentence-transformers/all-MiniLM-L6-v2")
+
+qdrant_client.recreate_collection(
+    collection_name="solidity-docs",
+    vectors_config=qdrant_client.get_fastembed_vector_params(),
+)
+
+metadata = []
+documents = []
+
+for (live_url, local_path) in url2fs.items():
+    
+    with open(local_path) as f:
+        document = f.read()
+
+    _metadata = {
+        "url": live_url
+    }
+
+    documents.append(document)
+    metadata.append(_metadata)
+
+
+qdrant_client.add(
+    collection_name="solidity-docs",
+    documents=documents,
+    metadata=metadata,
+    ids=tqdm(range(len(documents))),
+)

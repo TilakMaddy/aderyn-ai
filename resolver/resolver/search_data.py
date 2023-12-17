@@ -22,6 +22,7 @@ class NeuralSearcher:
         return metadata
 
 
+
 def display_record(rec, verbose):
     print(rec["severity"] + " " + rec["title"] + " (" + str(len(rec["instances"])) + " files) ")
     
@@ -41,6 +42,7 @@ def go_read_from(filepath, line_no):
 
 
 neural_searcher = NeuralSearcher(collection_name='aderyn_reports')
+docs_searcher = NeuralSearcher(collection_name='solidity-docs')
 
 while True:
 
@@ -84,7 +86,14 @@ while True:
 
             confirmation = input(f"This will be exposed. \n{source_code_line}\nGo ahead ? (y/n) ")
             if confirmation.lower() == "y":
-                ask_chatgpt.ask_chatgpt(prompt)
+                chat_gpt_ans = ask_chatgpt.ask_chatgpt(prompt)
+                relavent_docs = docs_searcher.search(chat_gpt_ans)
+                urls = [x["url"] for x in relavent_docs]
+                print("Relavnt solidity docs links:")
+                print(urls)
+                print()
+                print(chat_gpt_ans)
+                print()
 
         else:
             break        
