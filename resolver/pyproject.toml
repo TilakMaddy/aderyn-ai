@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "resolver"
+version = "0.1.0"
+description = ""
+authors = ["TilakMaddy <tilak.madichetti@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+qdrant-client = {extras = ["fastembed"], version = "^1.7.0"}
+tqdm = "^4.66.1"
+openai = "^1.5.0"
+dotenv = "^0.0.5"
+python-dotenv = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

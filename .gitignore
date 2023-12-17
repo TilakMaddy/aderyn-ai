@@ -1,0 +1,5 @@
+.venv/
+qdrant_storage/
+.env
+__pycache__/
+local_cache/
