@@ -29,7 +29,8 @@ Now, install the dependencies from pyproject.toml
 
 Load the data into the vector store - 
 ```
-python resolver/load_data.py
+python resolver/load_data.py # index your report.json  
+python resolver/load_soldocs.py # index latest solidity docs
 ```
 
 (Optional step)
@@ -95,6 +96,9 @@ Shown below is a conversation thread where I tried to find out all of the **hash
 > *return keccak256(abi.encodePacked(a, b));*
 
 *Go ahead ? (y/n)* **y**
+
+*Relavnt solidity docs links:
+['https://docs.soliditylang.org/en/v0.8.23/abi-spec.html', 'https://docs.soliditylang.org/en/v0.8.23/cheatsheet.html', 'https://docs.soliditylang.org/en/v0.8.23/internals/layout_in_calldata.html']*
 
 *To fix the vulnerability, you should replace the use of `abi.encodePacked` with `abi.encode`.
 By using `abi.encode`, the items will be padded to 32 bytes and prevent hash collisions.

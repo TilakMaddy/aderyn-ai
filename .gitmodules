@@ -1,0 +1,3 @@
+[submodule "resolver/solidity-docs"]
+	path = resolver/solidity-docs
+	url = git@github.com:ethereum/solidity
