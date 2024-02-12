@@ -23,7 +23,7 @@ with open(payload_path) as fd:
     report = json.load(fd)
 
 high_issues = (report["high_issues"], "High")
-medium_issues = (report["medium_issue"], "Medium")
+medium_issues = (report["medium_issues"], "Medium")
 low_issues = (report["low_issues"], "Low")
 nc_issues = (report["nc_issues"], "NC")
 
